@@ -1,3 +1,4 @@
+import 'package:cozy_meal/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -36,7 +37,7 @@ class LogOut extends StatelessWidget {
               textCancel: " Cancel ",
               cancelTextColor: Colors.black,
               textConfirm: " Log Out ",
-              confirmTextColor: Colors.red,
+              confirmTextColor: googleColor,
               onCancel: () {
                 Get.back();
               },
@@ -56,9 +57,8 @@ class LogOut extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w300,
-                    color: Colors.red),
+                    color: googleColor),
               ),
-
             ],
           ),
         ),

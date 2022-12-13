@@ -3,8 +3,10 @@ import 'package:cozy_meal/logic/controllers/prodect_controller.dart';
 import 'package:cozy_meal/model/product_model.dart';
 import 'package:cozy_meal/utils/text_utils.dart';
 import 'package:cozy_meal/utils/theme.dart';
+import 'package:cozy_meal/views/widgets/product/list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 
 class CardItemsHorizontal extends StatelessWidget {
   CardItemsHorizontal({Key? key}) : super(key: key);
@@ -27,10 +29,11 @@ class CardItemsHorizontal extends StatelessWidget {
               ? controller.prodects.length
               : controller.searchList.length,
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            childAspectRatio: 1,
-            mainAxisSpacing: 9.0,
-            crossAxisSpacing: 6.0,
+            childAspectRatio: 0.8,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 2,
             maxCrossAxisExtent: 300,
+
           ),
           itemBuilder: (context, index) {
             if (controller.searchList.isEmpty) {
@@ -43,9 +46,9 @@ class CardItemsHorizontal extends StatelessWidget {
                   controller.prodects[index].productNumber.toString(),
                   productModels: controller.prodects[index],
                   onTap: () {
-                    // Get.to(() => ProductDetailsScreen(
-                    //   productModels: controller.productList[index],
-                    // ));k
+                    Get.to(() => ListScreen(
+                      productModels: controller.prodects[index],
+                    ));
                   });
             } else {
               return buildCardItems(
@@ -57,9 +60,9 @@ class CardItemsHorizontal extends StatelessWidget {
                       .toString(),
                   productModels: controller.searchList[index],
                   onTap: () {
-                    // Get.to(() => ProductDetailsScreen(
-                    //   productModels: controller.searchList[index],
-                    // ));
+                    Get.to(() => ListScreen(
+                      productModels: controller.prodects[index],
+                    ));
                   });
             }
           },
@@ -93,12 +96,14 @@ class CardItemsHorizontal extends StatelessWidget {
               ),
             ],
           ),
-          child: Column(
+          child:  Obx(
+                  () =>  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Stack(
+             Stack(
                 children: [Container(
                   width: double.infinity,
-                  height: 110,
+                  height: 130,
                   decoration: BoxDecoration(
                     color: mainColor,
                     borderRadius: BorderRadius.circular(10),
@@ -108,6 +113,7 @@ class CardItemsHorizontal extends StatelessWidget {
                     fit: BoxFit.fill,
                   ),
                 ),
+
                   IconButton(
                     onPressed: () {
                       controller.manageFavourites(productId);
@@ -123,52 +129,30 @@ class CardItemsHorizontal extends StatelessWidget {
                     ),
                   ),
               ]),
-              Obx(
-                    () => Row(
+             Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    SizedBox(width: 11,),
                     TextUtils(
                       text: " $productName", color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      underLine: TextDecoration.none, fontsize: 13,
+                      underLine: TextDecoration.none, fontsize:
+                    16.sp,
                     ),
-
-                    // IconButton(
-                    //   onPressed: () {
-                    //     cartController.addProductToCart(productModels);
-                    //   },
-                    //   icon: const Icon(
-                    //     Icons.shopping_cart,
-                    //     color: Colors.grey,
-                    //   ),
-                    // ),
                   ],
                 ),
 
-              ),
-              Obx(
-                    () => Row(
+              Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    SizedBox(width: 13,),
                     TextUtils(
                       text: " $category", color: Colors.white,
                       fontWeight: FontWeight.bold,
                       underLine: TextDecoration.none, fontsize: 13,
                     ),
-                    // IconButton(
-                    //   onPressed: () {
-                    //     cartController.addProductToCart(productModels);
-                    //   },
-                    //   icon: const Icon(
-                    //     Icons.shopping_cart,
-                    //     color: Colors.grey,
-                    //   ),
-                    // ),
                   ],
                 ),
-
-              ),
-
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, ),
                 child: Row(
@@ -179,16 +163,14 @@ class CardItemsHorizontal extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       text: "******",
                       color: googleColor,
-                      underLine: TextDecoration.none, fontsize: 13,
+                      underLine: TextDecoration.none, fontsize: 16.sp,
                     ),
                     ]),
-
                 ),
-
             ],
           ),
         ),
       ),
-    );
+    ));
   }
 }

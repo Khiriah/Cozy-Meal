@@ -1,43 +1,51 @@
-import 'dart:convert';
-
-List<Users> productModelsFromJson(String str) =>
-    List<Users>.from(
-        json.decode(str).map((x) => Users.fromJson(x)));
-
-String productModelsToJson(List<Users> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
-
-
-
-class Users {
-  Users({
-    this.userNumber,
-    required this.userName,
-    required this.userPhone,
-    required this.description,
-    required this.imageUrl,
-  });
-
-  String? userNumber;
-  final String userName;
-  final String userPhone;
-  final String description;
-  String imageUrl;
-
-  factory Users.fromJson(Map<String, dynamic> json) => Users(
-    userNumber: json["userNumber"],
-    userName: json["userName"],
-    userPhone: json["userPhone"],
-    description: json["description"],
-    imageUrl: json["imageUrl"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "userNumber": userNumber,
-    "userName": userName,
-    "userPhone": userPhone,
-    "description": description,
-    "imageUrl": imageUrl,
-  };
-}
+//
+//
+// import 'dart:convert';
+//
+// List<UserModel> productModelsFromJson(String str) =>
+//     List<UserModel>.from(
+//         json.decode(str).map((x) => UserModel.fromJson(x)));
+//
+// String productModelsToJson(List<UserModel> data) =>
+//     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+//
+//
+//
+//
+// class UserModel {
+//   String? uid;
+//   String? name;
+//   String? email;
+//   String? password;
+//   String? image;
+//
+//   UserModel({
+//     this.uid,
+//     this.name,
+//     this.email,
+//     this.password,
+//     this.image
+//   });
+//
+//   factory UserModel.fromJson(Map<String, dynamic> json) =>
+//       UserModel(
+//         uid: json["id"],
+//         name: json["name"],
+//         email: json["email"],
+//         password: json["password"],
+//         image: json["image"],
+//
+//       );
+//
+//
+//   Map<String, dynamic> toJson() {
+//     return {
+//       'uid': uid,
+//       'name': name,
+//       'email': email,
+//       'password': password,
+//       'image': image,
+//
+//     };
+//   }
+// }

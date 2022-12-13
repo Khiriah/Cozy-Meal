@@ -30,7 +30,7 @@ class SettingsWidget extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w300,
-                    color: Get.isDarkMode ? Colors.black : Colors.white),
+                    color:  Get.isDarkMode ? Colors.white: Colors.black),
               ),
               Container(
                 padding: const EdgeInsets.all(3),

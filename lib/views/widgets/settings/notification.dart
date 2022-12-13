@@ -19,14 +19,13 @@ class NotificationWidget extends StatelessWidget {
           fontsize: 12.sp,
           fontWeight: FontWeight.w300,
           text: "Notification",
-          color: Get.isDarkMode ? Colors.black: Colors.white,
+          color:  Get.isDarkMode ? Colors.white: Colors.black,
         ),
         Switch(
           activeTrackColor: googleColor,
           activeColor: mainColor,
           value: false,
           onChanged: (_) {
-
 
           },
         ),

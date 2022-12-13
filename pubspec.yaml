@@ -55,6 +55,7 @@ dependencies:
   animate_do: ^3.0.2
   http: ^0.13.4
   flutter_svg: ^0.22.0
+  readmore: ^2.1.0
 
 
 dev_dependencies:

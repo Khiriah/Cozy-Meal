@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           // fallbackLocale: Locale(ene),
           theme: ThemesApp.light,
           darkTheme: ThemesApp.dark,
-          // themeMode: ThemeController().themeDataGet,
+           themeMode: ThemeController().themeDataGet,
           initialRoute: FirebaseAuth.instance.currentUser != null ||
               GetStorage().read<bool>("auth") == true
               ? AppRoutes.first

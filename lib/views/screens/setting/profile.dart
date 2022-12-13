@@ -55,8 +55,8 @@ class ProfileScreen extends StatelessWidget {
                         alignment: Alignment.center,
                         child: TextUtils(
                           text: authController.displayUserName.value,
-                          color: Get.isDarkMode ? Colors.black: Colors.white,
-                          fontsize: 12.sp,
+                          color:  googleColor,
+                          fontsize: 24.sp,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -67,7 +67,7 @@ class ProfileScreen extends StatelessWidget {
                         alignment: Alignment.center,
                         child: TextUtils(
                           text: authController.displayDescription.value,
-                          color: Get.isDarkMode ? Colors.black: Colors.white,
+                          color:  Get.isDarkMode ? Colors.white: Colors.black,
                           fontsize: 9.sp,
                           fontWeight: FontWeight.w500,
                         ),
@@ -79,8 +79,8 @@ class ProfileScreen extends StatelessWidget {
                         alignment: Alignment.center,
                         child: TextUtils(
                           text: authController.displayUserEmail.value,
-                          color:Get.isDarkMode ? Colors.black: Colors.white,
-                          fontsize: 9.sp,
+                          color: Get.isDarkMode ? Colors.white: Colors.black,
+                          fontsize: 14.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -101,7 +101,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       EditProfile(),
                       Divider(
-                        color: Get.isDarkMode ? Colors.black: Colors.white,
+                        color: Get.isDarkMode ? Colors.white: Colors.black,
                         thickness: 1,
                       ),
                       SizedBox(

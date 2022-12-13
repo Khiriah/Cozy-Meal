@@ -2,8 +2,8 @@ import 'package:cozy_meal/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class EmptyScreen extends StatelessWidget {
-  const EmptyScreen({Key? key}) : super(key: key);
+class EmptyFavorites extends StatelessWidget {
+  const EmptyFavorites({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,29 +32,7 @@ class EmptyScreen extends StatelessWidget {
           SizedBox(
             height: 22,
           ),
-          SizedBox(
-              height: 41,
-              width: 197,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  elevation: 0,
-                  primary: Colors.grey.shade300,
-                ),
-                onPressed: () {
-                  Get.toNamed(Routes.mainScreen);
-                },
-                child: Text(
-                  "View Items ",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ))
+
         ],
       ),
     );

@@ -1,4 +1,5 @@
 
+import 'package:cozy_meal/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -31,7 +32,7 @@ class EditProfile extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w300,
-                    color: Colors.black),
+                    color: Get.isDarkMode ? Colors.white: Colors.black),
               ),
               Container(
                 padding: const EdgeInsets.all(3),
@@ -41,7 +42,7 @@ class EditProfile extends StatelessWidget {
                 ),
                 child: const Icon(
                   Icons.arrow_forward_ios,
-                  color: Colors.black26,
+                  color: googleColor,
                 ),
               ),
 

@@ -1,5 +1,5 @@
 import 'package:cozy_meal/logic/controllers/prodect_controller.dart';
-import 'package:cozy_meal/views/screens/admin/empty_screen.dart';
+import 'package:cozy_meal/views/widgets/product/empty_favorites.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +11,7 @@ class FavoritesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Obx(
             () => Scaffold(
+                backgroundColor: context.theme.backgroundColor,
         body: controller.favouritesList.isNotEmpty
             ? ListView.builder(
             itemCount: controller.favouritesList.length,
@@ -94,6 +95,6 @@ class FavoritesScreen extends StatelessWidget {
                 ),
               );
             }))
-            : EmptyScreen()));
+            : EmptyFavorites()));
   }
 }

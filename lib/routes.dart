@@ -1,6 +1,7 @@
 import 'package:cozy_meal/logic/bindings/main_binding.dart';
 import 'package:cozy_meal/views/screens/admin/add_product_screen.dart';
 import 'package:cozy_meal/views/screens/admin/stock_screen.dart';
+import 'package:cozy_meal/views/screens/datiles/details_screen.dart';
 import 'package:cozy_meal/views/screens/first_screen.dart';
 import 'package:cozy_meal/views/screens/forgot_password_screen.dart';
 import 'package:cozy_meal/views/screens/login_screen.dart';
@@ -8,7 +9,7 @@ import 'package:cozy_meal/views/screens/setting/edit_profile_screen.dart';
 import 'package:cozy_meal/views/screens/setting/profile.dart';
 import 'package:cozy_meal/views/screens/setting/settings_screen.dart';
 import 'package:cozy_meal/views/screens/signup_screen.dart';
-import 'package:cozy_meal/views/screens/user/cart_screen.dart';
+import 'package:cozy_meal/views/screens/cart/cart_screen.dart';
 import 'package:cozy_meal/views/screens/user/main_screen.dart';
 import 'package:get/route_manager.dart';
 import 'logic/bindings/auth_binding.dart';
@@ -71,7 +72,8 @@ class AppRoutes {
         AuthBinding(),
         MainBinding()
       ],
-    ),GetPage(
+    ),
+    GetPage(
       name: Routes.stockScreen,
       page: () => StockScreen(),
       bindings: [
@@ -80,6 +82,7 @@ class AppRoutes {
       ],
 
     ),
+
   ];
 }
 
@@ -96,4 +99,7 @@ class Routes {
   static const addProductFromScreen = '/add_product_from_screen';
   static const firstScreen = '/first_screen';
   static const stockScreen = '/stock_screen';
+
+
+
 }

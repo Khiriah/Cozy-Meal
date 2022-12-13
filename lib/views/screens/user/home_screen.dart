@@ -1,3 +1,4 @@
+import 'package:cozy_meal/logic/controllers/auth_controller.dart';
 import 'package:cozy_meal/logic/controllers/prodect_controller.dart';
 import 'package:cozy_meal/model/product_model.dart';
 import 'package:cozy_meal/utils/text_utils.dart';
@@ -11,20 +12,22 @@ import 'package:get/get.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   final controller = Get.put(ProductController());
+  final authController = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: mainColor,
+      backgroundColor: context.theme.backgroundColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             padding: EdgeInsets.only(top: 15, left: 15, right: 15),
-            decoration: BoxDecoration(
+
+            decoration: Get.isDarkMode? BoxDecoration(
                 gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment(0.8, 1),
-                    colors: [
+                    colors:  [
                   googleColor,
                   mainColor,
                   mainColor,
@@ -32,8 +35,22 @@ class HomeScreen extends StatelessWidget {
                   mainColor,
                   mainColor,
                   mainColor
-                ])),
+                ])):BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment(0.8, 1),
+                    colors:  [
+                      googleColor,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+                      Colors.white,
+
+                    ])),
             child: Stack(children: [
+            
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

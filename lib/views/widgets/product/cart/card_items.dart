@@ -3,12 +3,12 @@ import 'package:cozy_meal/logic/controllers/prodect_controller.dart';
 import 'package:cozy_meal/model/product_model.dart';
 import 'package:cozy_meal/utils/text_utils.dart';
 import 'package:cozy_meal/utils/theme.dart';
+import 'package:cozy_meal/views/screens/datiles/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CardItems extends StatelessWidget {
-  CardItems({Key? key}) : super(key: key);
-
+  CardItems({Key? key,}) : super(key: key);
   final controller = Get.find<ProductController>();
   final cartController = Get.find<CartController>();
 
@@ -42,9 +42,9 @@ class CardItems extends StatelessWidget {
                             controller.prodects[index].productNumber.toString(),
                         productModels: controller.prodects[index],
                         onTap: () {
-                          // Get.to(() => ProductDetailsScreen(
-                          //   productModels: controller.productList[index],
-                          // ));k
+                          Get.to(() => DatilesScreen(
+                            productModels: controller.prodects[index],
+                          ));
                         });
                   } else {
                     return buildCardItems(
@@ -56,9 +56,9 @@ class CardItems extends StatelessWidget {
                             .toString(),
                         productModels: controller.searchList[index],
                         onTap: () {
-                          // Get.to(() => ProductDetailsScreen(
-                          //   productModels: controller.searchList[index],
-                          // ));
+                          Get.to(() => DatilesScreen(
+                            productModels: controller.searchList[index],
+                          ));
                         });
                   }
                 },

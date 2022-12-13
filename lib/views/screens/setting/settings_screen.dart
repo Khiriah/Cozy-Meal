@@ -24,7 +24,7 @@ class SettingScreen extends StatelessWidget {
           elevation: 0,
           title: Text(
             'Settings',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: googleColor),
           ),
           leading: IconButton(
             onPressed: () {
@@ -32,7 +32,7 @@ class SettingScreen extends StatelessWidget {
             },
             icon: Icon(
               Icons.arrow_back_ios,
-              color: Colors.black,
+              color: googleColor,
             ),
           ),
         ),
@@ -46,14 +46,14 @@ class SettingScreen extends StatelessWidget {
               fontsize: 14.sp,
               fontWeight: FontWeight.bold,
               text: "Account",
-              color:  Get.isDarkMode ? googleColor: mainColor,
+              color:  googleColor,
             ),
             SizedBox(
               height: 3.5.h,
             ),
             ChangePassword(),
             Divider(
-              color:Get.isDarkMode ? Colors.black : Colors.white,
+              color: Get.isDarkMode ? Colors.white: Colors.black,
               thickness: 1,
             ),
             SizedBox(
@@ -61,7 +61,7 @@ class SettingScreen extends StatelessWidget {
             ),
             NotificationWidget(),
             Divider(
-              color:  Get.isDarkMode ? Colors.black : Colors.white,
+              color:   Get.isDarkMode ? Colors.white: Colors.black,
               thickness: 1,
             ),
             SizedBox(
@@ -69,7 +69,7 @@ class SettingScreen extends StatelessWidget {
             ),
             DarkModeWidget(),
             Divider(
-              color:  Get.isDarkMode ? Colors.black : Colors.white,
+              color:   Get.isDarkMode ? Colors.white: Colors.black,
               thickness: 1,
             ),
             SizedBox(
