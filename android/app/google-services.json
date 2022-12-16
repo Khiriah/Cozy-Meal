@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "330105408946",
+    "project_id": "cozy-meal",
+    "storage_bucket": "cozy-meal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:330105408946:android:7cf083647a8f11075028ab",
+        "android_client_info": {
+          "package_name": "com.example.cozy_meal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "330105408946-687icak03fuvhua8mkmvvg8ovd4jjfln.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJv4hc0TJWYHAibV4SZdvZBqn5FiGtwMw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "330105408946-687icak03fuvhua8mkmvvg8ovd4jjfln.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
