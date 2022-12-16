@@ -20,8 +20,6 @@ class UserModel {
         password = dataMap['password'],
         image = dataMap['image'];
 
-
-
   Map<String, dynamic> toData() {
     return {
       'uid': uid,

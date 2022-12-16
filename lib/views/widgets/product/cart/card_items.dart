@@ -27,9 +27,9 @@ class CardItems extends StatelessWidget {
                     : controller.searchList.length,
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   childAspectRatio: 0.8,
-                  mainAxisSpacing: 9.0,
-                  crossAxisSpacing: 6.0,
-                  maxCrossAxisExtent: 200,
+                  mainAxisSpacing: 13,
+                  crossAxisSpacing: 2,
+                  maxCrossAxisExtent: 300,
                 ),
                 itemBuilder: (context, index) {
                   if (controller.searchList.isEmpty) {
@@ -100,7 +100,7 @@ class CardItems extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () {
-                        controller.manageFavourites(productId);
+                        controller.addProdectToFirstore(productModels);
                       },
                       icon: controller.isFave(productId)
                           ? const Icon(
@@ -114,7 +114,7 @@ class CardItems extends StatelessWidget {
                     ),
                     IconButton(
                       onPressed: () {
-                        cartController.addProductToCart(productModels);
+                        cartController.addCartToFirstore(productModels);
                       },
                       icon: const Icon(
                         Icons.shopping_cart,

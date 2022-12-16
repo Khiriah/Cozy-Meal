@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cozy_meal/logic/controllers/auth_controller.dart';
 import 'package:cozy_meal/model/product_model.dart';
 import 'package:cozy_meal/routes.dart';
 import 'package:cozy_meal/utils/theme.dart';
@@ -5,31 +7,60 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
+  var cartsList = {}.obs;
+  final fireRef = FirebaseFirestore.instance.collection('users');
+  final controller = Get.find<AuthController>();
 
-  var productsMap = {}.obs;
+  Future<void> addCartToFirstore(Prodect prodect) async {
+    final prodectRef = fireRef
+        .doc(controller.displayUserEmail.value)
+        .collection("cart")
+        .doc(prodect.productNumber);
+    final data=prodect.toJson();
+    prodectRef.set(data).whenComplete(() {
+      Get.snackbar( "Check your cart", "${prodect.productName} is already added");
+      if (cartsList.containsKey(prodect)) {
+        cartsList[prodect] += 1;
+        // Get.snackbar( "Check your cart", "${prodect.productName} is successfully");
+      }else{
+        cartsList[prodect] = 1;
+      }
+    }
+    );
+  }
 
-  void addProductToCart(Prodect productModels) {
-    if (productsMap.containsKey(productModels)) {
-      productsMap[productModels] += 1;
+
+// void addProductToCart(Prodect productModels) {
+  //   if (cartsList.containsKey(productModels)) {
+  //     cartsList[productModels] += 1;
+  //   } else {
+  //     cartsList[productModels] = 1;
+  //   }
+  // }
+
+  void removeProductsFarmCart(Prodect prodect) {
+    if (cartsList.containsKey(prodect) &&
+        cartsList[prodect] == 1) {
+      cartsList.removeWhere((key, value) => key == prodect);
     } else {
-      productsMap[productModels] = 1;
+      cartsList[prodect] -= 1;
     }
   }
 
-  void removeProductsFarmCart(Prodect productModels) {
-    if (productsMap.containsKey(productModels) &&
-        productsMap[productModels] == 1) {
-      productsMap.removeWhere((key, value) => key == productModels);
+  void removeOneProduct(Prodect prodect) async {
+    if (cartsList.containsKey(prodect)) {
+      await fireRef
+          .doc(controller.displayUserEmail.value)
+          .collection("cart")
+          .doc(prodect.productNumber)
+          .delete();
+      cartsList.removeWhere((key, value) => key == prodect);
+      Get.snackbar( "${prodect.productName}", " was removed from your cart" );
     } else {
-      productsMap[productModels] -= 1;
+      Get.snackbar("Error", "Somthing went wrong ");
     }
-
-
   }
 
-  void removeOneProduct(Prodect productModels) {
-    productsMap.removeWhere((key, value) => key == productModels);
-  }
 
   void clearAllProducts() {
     Get.defaultDialog(
@@ -55,7 +86,7 @@ class CartController extends GetxController {
         Get.toNamed(Routes.cartScreen);
       },
       onConfirm: () {
-        productsMap.clear();
+        cartsList.clear();
         Get.back();
       },
       buttonColor: Get.isDarkMode ? googleColor : googleColor,
@@ -63,19 +94,19 @@ class CartController extends GetxController {
   }
 
   get productSubTotal =>
-      productsMap.entries.map((e) => e.key.price * e.value).toList();
+      cartsList.entries.map((e) => e.key.price * e.value).toList();
 
-  get total => productsMap.entries
+  get total => cartsList.entries
       .map((e) => e.key.price * e.value)
       .toList()
       .reduce((value, element) => value + element)
       .toStringAsFixed(2);
 
   int quantity() {
-    if (productsMap.isEmpty) {
+    if (cartsList.isEmpty) {
       return 0;
     } else {
-      return productsMap.entries
+      return cartsList.entries
           .map((e) => e.value)
           .toList()
           .reduce((value, element) => value + element);

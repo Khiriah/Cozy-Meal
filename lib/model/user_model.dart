@@ -1,51 +1,32 @@
-//
-//
-// import 'dart:convert';
-//
-// List<UserModel> productModelsFromJson(String str) =>
-//     List<UserModel>.from(
-//         json.decode(str).map((x) => UserModel.fromJson(x)));
-//
-// String productModelsToJson(List<UserModel> data) =>
-//     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-//
-//
-//
-//
 // class UserModel {
-//   String? uid;
-//   String? name;
-//   String? email;
-//   String? password;
-//   String? image;
+//   static const ID = "id";
+//   static const NAME = "name";
+//   static const EMAIL = "email";
+//   static const CART = "cart";
 //
-//   UserModel({
-//     this.uid,
-//     this.name,
-//     this.email,
-//     this.password,
-//     this.image
-//   });
+//   String id;
+//   String name;
+//   String email;
+//   List<CartItemModel> cart;
 //
-//   factory UserModel.fromJson(Map<String, dynamic> json) =>
-//       UserModel(
-//         uid: json["id"],
-//         name: json["name"],
-//         email: json["email"],
-//         password: json["password"],
-//         image: json["image"],
+//   UserModel({this.id, this.name, this.email, this.cart});
 //
-//       );
-//
-//
-//   Map<String, dynamic> toJson() {
-//     return {
-//       'uid': uid,
-//       'name': name,
-//       'email': email,
-//       'password': password,
-//       'image': image,
-//
-//     };
+//   UserModel.fromSnapshot(DocumentSnapshot snapshot) {
+//     name = snapshot.data()[NAME];
+//     email = snapshot.data()[EMAIL];
+//     id = snapshot.data()[ID];
+//     cart = _convertCartItems(snapshot.data()[CART] ?? []);
 //   }
+//
+//   List<CartItemModel> _convertCartItems(List cartFomDb){
+//     List<CartItemModel> _result = [];
+//     if(cartFomDb.length > 0){
+//       cartFomDb.forEach((element) {
+//         _result.add(CartItemModel.fromMap(element));
+//       });
+//     }
+//     return _result;
+//   }
+//
+//   List cartItemsToJson() => cart.map((item) => item.toJson()).toList();
 // }

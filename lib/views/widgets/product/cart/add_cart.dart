@@ -55,7 +55,7 @@ class AddCart extends StatelessWidget {
                   primary: Get.isDarkMode ? googleColor : googleColor,
                 ),
                 onPressed: () {
-                  controller.addProductToCart(productModels);
+                  controller.addCartToFirstore(productModels);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

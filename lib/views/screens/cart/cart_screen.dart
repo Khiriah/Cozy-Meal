@@ -29,7 +29,7 @@ class CartScreen extends StatelessWidget {
         ),
         body: Obx(
               () {
-            if (controller.productsMap.isEmpty) {
+            if (controller.cartsList.isEmpty) {
               return const EmptyCart();
             } else {
               return SingleChildScrollView(
@@ -42,15 +42,15 @@ class CartScreen extends StatelessWidget {
                           return CartProductCard(
                             index: index,
                             productModels:
-                            controller.productsMap.keys.toList()[index],
+                            controller.cartsList.keys.toList()[index],
                             quantity:
-                            controller.productsMap.values.toList()[index],
+                            controller.cartsList.values.toList()[index],
                           );
                         },
                         separatorBuilder: (context, index) => const SizedBox(
                           height: 20,
                         ),
-                        itemCount: controller.productsMap.length,
+                        itemCount: controller.cartsList.length,
                       ),
                     ),
                     Padding(

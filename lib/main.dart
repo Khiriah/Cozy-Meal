@@ -1,4 +1,3 @@
-import 'package:cozy_meal/logic/bindings/auth_binding.dart';
 import 'package:cozy_meal/logic/controllers/theme_controller.dart';
 import 'package:cozy_meal/routes.dart';
 import 'package:cozy_meal/utils/theme.dart';

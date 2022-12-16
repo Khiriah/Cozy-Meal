@@ -30,7 +30,7 @@ class CardItemsHorizontal extends StatelessWidget {
               : controller.searchList.length,
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
             childAspectRatio: 0.8,
-            mainAxisSpacing: 10,
+            mainAxisSpacing: 13,
             crossAxisSpacing: 2,
             maxCrossAxisExtent: 300,
 
@@ -116,7 +116,7 @@ class CardItemsHorizontal extends StatelessWidget {
 
                   IconButton(
                     onPressed: () {
-                      controller.manageFavourites(productId);
+                      controller.addProdectToFirstore(productModels);
                     },
                     icon: controller.isFave(productId)
                         ? const Icon(
@@ -137,7 +137,7 @@ class CardItemsHorizontal extends StatelessWidget {
                       text: " $productName", color: Colors.white,
                       fontWeight: FontWeight.bold,
                       underLine: TextDecoration.none, fontsize:
-                    16.sp,
+                    14.sp,
                     ),
                   ],
                 ),

@@ -16,37 +16,39 @@ class AddCart extends StatelessWidget {
   final controller = Get.find<CartController>();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(25),
-      child: Row(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextUtils(
-                fontsize: 16,
-                fontWeight: FontWeight.bold,
-                text: "Price",
-                color: Colors.grey,
-                underLine: TextDecoration.none,
-              ),
-              Text(
-                "\$$price",
-                style: TextStyle(
-                  color: Get.isDarkMode ? Colors.white : Colors.black,
-                  fontSize: 20,
+    return Align(
+      alignment: Alignment.bottomRight,
+      child: Container(
+        padding: const EdgeInsets.all(25),
+        child: Row(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextUtils(
+                  fontsize: 16,
                   fontWeight: FontWeight.bold,
-                  height: 1.5,
+                  text: "Price",
+                  color: Colors.grey,
+                  underLine: TextDecoration.none,
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-          Expanded(
-            child: SizedBox(
+                Text(
+                  "\$$price",
+                  style: TextStyle(
+                    color: Get.isDarkMode ? Colors.white : Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    height: 1.5,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+            SizedBox(
               height: 60,
+              width: 270,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -56,7 +58,7 @@ class AddCart extends StatelessWidget {
                   primary: googleColor,
                 ),
                 onPressed: () {
-                  controller.addProductToCart(productModels);
+                  controller.addCartToFirstore(productModels);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -78,8 +80,8 @@ class AddCart extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

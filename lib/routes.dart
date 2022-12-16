@@ -11,6 +11,7 @@ import 'package:cozy_meal/views/screens/setting/settings_screen.dart';
 import 'package:cozy_meal/views/screens/signup_screen.dart';
 import 'package:cozy_meal/views/screens/cart/cart_screen.dart';
 import 'package:cozy_meal/views/screens/user/main_screen.dart';
+import 'package:cozy_meal/views/widgets/product/catagory/stores_screen.dart';
 import 'package:get/route_manager.dart';
 import 'logic/bindings/auth_binding.dart';
 
@@ -82,6 +83,15 @@ class AppRoutes {
       ],
 
     ),
+    GetPage(
+      name: Routes.storesScreen,
+      page: () => StoresScreen(),
+      bindings: [
+        AuthBinding(),
+        MainBinding()
+      ],
+
+    ),
 
   ];
 }
@@ -99,7 +109,6 @@ class Routes {
   static const addProductFromScreen = '/add_product_from_screen';
   static const firstScreen = '/first_screen';
   static const stockScreen = '/stock_screen';
-
-
+  static const storesScreen = '/stores_screen';
 
 }

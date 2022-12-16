@@ -1,6 +1,6 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cozy_meal/logic/controllers/auth_controller.dart';
 import 'package:cozy_meal/model/product_model.dart';
 import 'package:cozy_meal/routes.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -15,7 +15,6 @@ class ProductController extends GetxController {
   var isLoading = true.obs;
   var stoarge = GetStorage();
 
-
   var isCatgeoryLoading = false.obs;
   late TextEditingController
       productNumberController,
@@ -27,8 +26,8 @@ class ProductController extends GetxController {
 
 
   TextEditingController searchTextController =TextEditingController();
-
-
+  final fireRef = FirebaseFirestore.instance.collection('users');
+  final controller = Get.find<AuthController>();
 
 
 
@@ -147,7 +146,7 @@ class ProductController extends GetxController {
       "imageUrl": imgUrl.toString(),
     }).whenComplete(() {
       print("update done");
-      Get.snackbar("", "Update successfully..");
+      Get.snackbar("Update", " successfully..");
       clearController();
       update();
       Get.offNamed(Routes.mainScreen);
@@ -162,7 +161,7 @@ class ProductController extends GetxController {
         .doc(productNumberController)
         .delete()
         .whenComplete(() async {
-      Get.snackbar("", "Delete successfully..");
+      Get.snackbar("Delete", " successfully..");
       print("delete ${productNumberController}");
 
       FirebaseStorage.instance
@@ -185,27 +184,48 @@ class ProductController extends GetxController {
   }
 
   var favouritesList =<Prodect> [].obs;
-  List<dynamic> prodectsFavourites = [];
+  var cartsList =<Prodect> [].obs;
 
-  void manageFavourites(String productId) async {
-    var existingIndex =
-    favouritesList.indexWhere((element) => element.productNumber == productId);
 
-    if (existingIndex >= 0) {
-      favouritesList.removeAt(existingIndex);
-      await stoarge.remove("isFavouritesList");
-    } else {
-      favouritesList
-          .add(prodects.firstWhere((element) => element.productNumber == productId));
 
-      await stoarge.write("isFavouritesList", favouritesList);
+  Future<void> addProdectToFirstore(Prodect prodect) async {
+    final prodectRef = fireRef
+        .doc(controller.displayUserEmail.value)
+        .collection("favourite")
+        .doc(prodect.productNumber);
+    final data=prodect.toJson();
+prodectRef.set(data).whenComplete(() {
+      if(prodect.productNumber==prodectRef.id){
+        Get.snackbar("Added", " successfully..");
+
+      }else{
+        Get.snackbar("Error", "Somthing went wrong ");
+      }
     }
+    );
+    update();
   }
+
+
+  Future<void> deletefavoret(String id) async {
+await fireRef
+    .doc(controller.displayUserEmail.value)
+    .collection("favourite")
+    .doc(id)
+    .delete();
+Get.snackbar( "On Favourite", " was removed from your cart" );
+  }
+
+
 
   bool isFave(String productId) {
     return favouritesList
-        .any((element) => element.productNumber== productId);
+        .any((element) {
+      return element.productNumber== productId;
+    });
   }
+
+
   void addSearchToList(String searchName) {
     searchName = searchName.toLowerCase();
     searchList.value = prodects.where((search) {
@@ -214,9 +234,10 @@ class ProductController extends GetxController {
       return searchTitle.contains(searchName) ||
           searchPrice.toString().contains(searchName);
     }).toList();
-
     update();
   }
+
+
 
   void clearSearch() {
     searchTextController.clear();

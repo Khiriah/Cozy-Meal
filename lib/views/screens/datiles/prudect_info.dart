@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:readmore/readmore.dart';
 
-class ClothesInfo extends StatelessWidget {
+class PrudectInfo extends StatelessWidget {
   final String title;
   final String description;
   final String productName;
@@ -15,7 +15,7 @@ class ClothesInfo extends StatelessWidget {
   final double price;
   final String productId;
   final Prodect productModels;
-  ClothesInfo({
+  PrudectInfo({
     required this.productName,
     required this.catagory,
     required this.image,
@@ -51,7 +51,7 @@ class ClothesInfo extends StatelessWidget {
               ),
               Obx(
                 () => Container(
-                  padding: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(25),
                   decoration: BoxDecoration(
                     color: Get.isDarkMode
                         ? Colors.white.withOpacity(0.9)
@@ -60,7 +60,7 @@ class ClothesInfo extends StatelessWidget {
                   ),
                   child: InkWell(
                     onTap: () {
-                      controller.manageFavourites(productId);
+                      controller.addProdectToFirstore(productModels);
                     },
                     child: controller.isFave(productId)
                         ? const Icon(

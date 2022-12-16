@@ -1,10 +1,12 @@
 import 'package:cozy_meal/logic/controllers/auth_controller.dart';
 import 'package:cozy_meal/logic/controllers/prodect_controller.dart';
 import 'package:cozy_meal/model/product_model.dart';
+import 'package:cozy_meal/routes.dart';
 import 'package:cozy_meal/utils/text_utils.dart';
 import 'package:cozy_meal/utils/theme.dart';
 import 'package:cozy_meal/views/widgets/product/cart/card_items.dart';
 import 'package:cozy_meal/views/widgets/product/cart/card_item_horzintal.dart';
+import 'package:cozy_meal/views/widgets/product/catagory/stores_screen.dart';
 import 'package:cozy_meal/views/widgets/product/search_form_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -97,7 +99,9 @@ class HomeScreen extends StatelessWidget {
                 fontsize: 20,
               ),
               TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                      Get.to(StoresScreen());
+                      },
                   child: TextUtils(
                     color: Colors.white,
                     text: 'See All',
@@ -143,7 +147,9 @@ class HomeScreen extends StatelessWidget {
                 fontsize: 20,
               ),
               TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(StoresScreen());
+                  },
                   child: TextUtils(
                     color: Colors.white,
                     text: 'See All',

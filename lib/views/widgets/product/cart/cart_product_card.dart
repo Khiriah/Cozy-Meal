@@ -103,7 +103,7 @@ class CartProductCard extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      controller.addProductToCart(productModels);
+                      controller.addCartToFirstore(productModels);
                     },
                     icon: Icon(
                       Icons.add_circle,
