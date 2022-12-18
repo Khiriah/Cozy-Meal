@@ -51,29 +51,36 @@ class PrudectInfo extends StatelessWidget {
               ),
               Obx(
                 () => Container(
-                  padding: const EdgeInsets.all(25),
-                  decoration: BoxDecoration(
-                    color: Get.isDarkMode
-                        ? Colors.white.withOpacity(0.9)
-                        : Colors.grey.withOpacity(0.4),
-                    shape: BoxShape.circle,
-                  ),
-                  child: InkWell(
-                    onTap: () {
-                      controller.addProdectToFirstore(productModels);
-                    },
-                    child: controller.isFave(productId)
-                        ? const Icon(
-                            Icons.favorite,
-                            color: Colors.red,
-                            size: 20,
-                          )
-                        : const Icon(
-                            Icons.favorite_outline,
-                            color: Colors.black,
-                            size: 20,
-                          ),
-                  ),
+
+                  child:
+                    IconButton(onPressed: (){
+                      controller.addProdectToFirstore(productModels);}, icon: controller.isFavorite.value
+                            ? const Icon(
+                                Icons.favorite,
+                                color: Colors.red,
+                                size: 20,
+                              )
+                            : const Icon(
+                                Icons.favorite_outline,
+                                color:  googleColor,
+                                size: 20,
+                              ),)
+                  // InkWell(
+                  //   onTap: () {
+                  //     controller.addProdectToFirstore(productModels);
+                  //   },
+                  //   child: controller.isFavorite
+                  //       ? const Icon(
+                  //           Icons.favorite,
+                  //           color: Colors.red,
+                  //           size: 20,
+                  //         )
+                  //       : const Icon(
+                  //           Icons.favorite_outline,
+                  //           color: Colors.black,
+                  //           size: 20,
+                  //         ),
+                  // ),
                 ),
               ),
             ],

@@ -1,5 +1,7 @@
 import 'package:cozy_meal/model/product_model.dart';
+import 'package:cozy_meal/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ListScreen extends StatelessWidget {
   final Prodect productModels;
@@ -7,6 +9,30 @@ class ListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return SafeArea(
+      child: Scaffold(
+      appBar: AppBar(
+      backgroundColor: mainColor,
+      title: Text(
+        productModels.category,
+        style: TextStyle(color: googleColor),
+      ),
+      centerTitle: true,
+    ),
+    backgroundColor: context.theme.backgroundColor,
+    body: SingleChildScrollView(
+    child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+    Container(
+    child: Image.network(
+    productModels.imageUrl,
+    fit: BoxFit.cover,
+    ),
+    ),
+   ] )
+    )
+    )
+    );
   }
 }

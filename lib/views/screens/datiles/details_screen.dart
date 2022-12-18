@@ -17,7 +17,7 @@ class DatilesScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: mainColor,
           title: Text(
-            productModels.category,
+            productModels.productName,
             style: TextStyle(color: googleColor),
           ),
           centerTitle: true,

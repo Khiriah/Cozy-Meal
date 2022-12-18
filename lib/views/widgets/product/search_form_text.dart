@@ -13,18 +13,18 @@ class SearchProducts extends StatelessWidget {
     return GetBuilder<ProductController>(
       builder: (_) => TextField(
         controller: controller.searchTextController,
-        cursorColor: Colors.white,
+        cursorColor: Get.isDarkMode ? Colors.grey : mainColor,
         keyboardType: TextInputType.text,
         onChanged: (searchName) {
           controller.addSearchToList(searchName);
         },
         decoration: InputDecoration(
           filled: true,
-          fillColor: mainColor,
+          fillColor:  Get.isDarkMode? mainColor:Colors.grey,
           focusColor: Colors.red,
           prefixIcon: const Icon(
             Icons.search,
-            color: Colors.white,
+            color: googleColor,
           ),
           suffixIcon: controller.searchTextController.text.isNotEmpty
               ? IconButton(
@@ -33,13 +33,13 @@ class SearchProducts extends StatelessWidget {
             },
             icon: const Icon(
               Icons.close,
-              color: Colors.white,
+              color: googleColor,
             ),
           )
               : null,
           hintText: "Search with name & price",
           hintStyle: const TextStyle(
-            color: Colors.white,
+            color: googleColor,
             fontSize: 16,
             fontWeight: FontWeight.w500,
           ),

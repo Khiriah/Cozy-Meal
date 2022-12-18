@@ -7,19 +7,10 @@ import 'package:cozy_meal/views/widgets/auth/check_widget.dart';
 import 'package:cozy_meal/views/widgets/auth/container_under.dart';
 import 'package:cozy_meal/views/widgets/auth/text_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
-import '../../../logic/controllers/auth_controller.dart';
 import '../../../routes.dart';
-import '../../../utils/text_utils.dart';
-import '../../../utils/theme.dart';
 
 
 

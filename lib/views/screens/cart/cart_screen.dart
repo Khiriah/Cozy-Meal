@@ -1,4 +1,5 @@
 import 'package:cozy_meal/logic/controllers/cart_controller.dart';
+import 'package:cozy_meal/utils/theme.dart';
 import 'package:cozy_meal/views/widgets/product/cart/cart_product_card.dart';
 import 'package:cozy_meal/views/widgets/product/cart/cart_total.dart';
 import 'package:cozy_meal/views/widgets/product/cart/empty_cart.dart';
@@ -16,7 +17,7 @@ class CartScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text("Cart Items"),
           elevation: 0,
-          backgroundColor: Get.isDarkMode ? Colors.grey : Colors.grey,
+          backgroundColor: Get.isDarkMode ? mainColor  :Colors.grey ,
           centerTitle: true,
           actions: [
             IconButton(

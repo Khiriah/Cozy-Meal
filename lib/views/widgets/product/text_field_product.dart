@@ -40,7 +40,7 @@ class ProductTextField extends StatelessWidget {
           validator: (value) => validator(value),
           decoration: InputDecoration(
             contentPadding: contentPadding,
-            fillColor: Color.fromRGBO(248, 248, 248, 1),
+            fillColor: Colors.black,
             hintText: hintText,
             hintStyle: const TextStyle(
               color: Colors.white,

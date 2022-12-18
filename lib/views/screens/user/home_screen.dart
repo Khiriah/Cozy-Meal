@@ -1,3 +1,5 @@
+import 'package:carousel_slider/carousel_options.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cozy_meal/logic/controllers/auth_controller.dart';
 import 'package:cozy_meal/logic/controllers/prodect_controller.dart';
 import 'package:cozy_meal/model/product_model.dart';
@@ -17,174 +19,194 @@ class HomeScreen extends StatelessWidget {
   final authController = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.theme.backgroundColor,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: EdgeInsets.only(top: 15, left: 15, right: 15),
+    return  SingleChildScrollView(
+      physics: AlwaysScrollableScrollPhysics(),
+      child: Container(
+          color: context.theme.backgroundColor,
+          width: double.infinity,
+          height:Get.height   ,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: EdgeInsets.only(top: 15, left: 15, right: 15),
+                decoration: Get.isDarkMode
+                    ? BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment(0.8, 1),
+                            colors: [
+                            googleColor,
+                            mainColor,
+                            mainColor,
+                            mainColor,
+                            mainColor,
+                            mainColor,
+                            mainColor
+                          ]))
+                    : BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment(0.8, 1),
+                            colors: [
+                            googleColor,
+                            Colors.grey.shade200,
+                            Colors.grey.shade200,
+                            Colors.grey.shade200,
+                            Colors.grey.shade200,
+                            Colors.grey.shade200,
+                            Colors.grey.shade200,
+                          ])),
+                child: Stack(children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.location_on,
+                        color: Get.isDarkMode ? Colors.grey : mainColor,
+                      ),
+                      Text(
+                        "Deliver to",
+                        style: TextStyle(
+                            color: Get.isDarkMode ? Colors.grey : mainColor,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        "  Home",
+                        style: TextStyle(
+                            color: googleColor,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    Container(
+                        padding: EdgeInsets.only(
+                            top: 50, left: 15, right: 15, bottom: 15),
+                        child: SearchProducts()),
 
-            decoration: Get.isDarkMode? BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment(0.8, 1),
-                    colors:  [
-                  googleColor,
-                  mainColor,
-                  mainColor,
-                  mainColor,
-                  mainColor,
-                  mainColor,
-                  mainColor
-                ])):BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment(0.8, 1),
-                    colors:  [
-                      googleColor,
-                      Colors.white,
-                      Colors.white,
-                      Colors.white,
-                      Colors.white,
-                      Colors.white,
-                      Colors.white,
+                    CarouselSlider(items:controller.imageListSlider.map((e) => ClipRRect(
+                      borderRadius: BorderRadius.circular(6),
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          Image.network(e,
+                            height: 200,
+                            width: 100,
+                            fit: BoxFit.cover,)
+                        ],
+                      ),
+                    )).toList() , options: CarouselOptions(
+                      autoPlay: true,
+                      enableInfiniteScroll: false,
+                      enlargeCenterPage: true,
+                      height: 150,
+                    ),),
 
-                    ])),
-            child: Stack(children: [
-            
+
+                  ])
+                ]),
+              ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(
-                    Icons.location_on,
-                    color: Colors.white,
+                  TextUtils(
+                    text: "Stores",
+                    color: Get.isDarkMode ? Colors.white : mainColor,
+                    fontWeight: FontWeight.bold,
+                    fontsize: 13,
                   ),
-                  Text(
-                    "Deliver to",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "  Home",
-                    style: TextStyle(
-                        color: googleColor,
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold),
-                  ),
+                  TextButton(
+                      onPressed: () {
+                        Get.offNamed(Routes.storesScreen);
+                      },
+                      child: TextUtils(
+                        color: Get.isDarkMode ? Colors.white : mainColor,
+                        text: 'See All',
+                        fontWeight: FontWeight.bold,
+                        fontsize: 13,
+                        underLine: TextDecoration.underline,
+                      ))
                 ],
               ),
-              Column(
+              StreamBuilder(
+                stream: controller.getData,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    controller.prodects = snapshot.data!.docs
+                        .map((e) => Prodect(
+                            productNumber: e['productNumber'],
+                            productName: e['productName'],
+                            description: e['description'],
+                            category: e['category'],
+                            price: e['price'],
+                            quantity: e['quantity'],
+                            imageUrl: e['imageUrl']))
+                        .toList();
 
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                        padding: EdgeInsets.only(top: 50, left: 15, right: 15,bottom: 15),
-                child :SearchProducts()),
-                SizedBox(
-                  height: 10,
-                ),
-              ])
-            ]),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextUtils(
-                text: "Stores",
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontsize: 20,
+                    print('leeength ${controller.prodects.length}');
+                    if (controller.prodects.isNotEmpty) {
+                      return CardItemsHorizontal();
+                    } else {
+                      return Text("No thing");
+                    }
+                  } else {
+                    return CardItemsHorizontal();
+                  }
+                },
               ),
-              TextButton(
-                  onPressed: () {
-                      Get.to(StoresScreen());
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextUtils(
+                    text: "Exclusive Offers",
+                    color: Get.isDarkMode ? Colors.white : mainColor,
+                    fontWeight: FontWeight.bold,
+                    fontsize: 13,
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        Get.offNamed(Routes.storesScreen);
                       },
-                  child: TextUtils(
-                    color: Colors.white,
-                    text: 'See All',
-                    fontWeight: FontWeight.bold,
-                    fontsize: 20,
-                    underLine: TextDecoration.underline,
-                  ))
-            ],
-          ),
-          StreamBuilder(
-            stream: controller.getData,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                controller.prodects = snapshot.data!.docs
-                    .map((e) => Prodect(
-                        productNumber: e['productNumber'],
-                        productName: e['productName'],
-                        description: e['description'],
-                        category: e['category'],
-                        price: e['price'],
-                        quantity: e['quantity'],
-                        imageUrl: e['imageUrl']))
-                    .toList();
-
-                print('leeength ${controller.prodects.length}');
-                if (controller.prodects.isNotEmpty) {
-                  return CardItemsHorizontal();
-                } else {
-                  return Text("No thing");
-                }
-              } else {
-                return CardItemsHorizontal();
-              }
-            },
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextUtils(
-                text: "Exclusive Offers",
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontsize: 20,
+                      child: TextUtils(
+                        color: Get.isDarkMode ? Colors.white : mainColor,
+                        text: 'See All',
+                        fontWeight: FontWeight.bold,
+                        fontsize: 13,
+                        underLine: TextDecoration.underline,
+                      ))
+                ],
               ),
-              TextButton(
-                  onPressed: () {
-                    Get.to(StoresScreen());
-                  },
-                  child: TextUtils(
-                    color: Colors.white,
-                    text: 'See All',
-                    fontWeight: FontWeight.bold,
-                    fontsize: 20,
-                    underLine: TextDecoration.underline,
-                  ))
+              StreamBuilder(
+                stream: controller.getData,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    controller.prodects = snapshot.data!.docs
+                        .map((e) => Prodect(
+                            productNumber: e['productNumber'],
+                            productName: e['productName'],
+                            description: e['description'],
+                            category: e['category'],
+                            price: e['price'],
+                            quantity: e['quantity'],
+                            imageUrl: e['imageUrl']))
+                        .toList();
+                    print('leeength ${controller.prodects.length}');
+                    if (controller.prodects.isNotEmpty) {
+                      return CardItems();
+                    } else {
+                      return Text("No thing");
+                    }
+                  } else {
+                    return CardItems();
+                  }
+                },
+              ),
             ],
           ),
-          StreamBuilder(
-            stream: controller.getData,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                controller.prodects = snapshot.data!.docs
-                    .map((e) => Prodect(
-                        productNumber: e['productNumber'],
-                        productName: e['productName'],
-                        description: e['description'],
-                        category: e['category'],
-                        price: e['price'],
-                        quantity: e['quantity'],
-                        imageUrl: e['imageUrl']))
-                    .toList();
-                print('leeength ${controller.prodects.length}');
-                if (controller.prodects.isNotEmpty) {
-                  return CardItems();
-                } else {
-                  return Text("No thing");
-                }
-              } else {
-                return CardItems();
-              }
-            },
-          ),
-        ],
+
       ),
     );
   }

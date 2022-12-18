@@ -18,9 +18,9 @@ class FavoritesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey.shade300,
-      body: Column(
+    return Container(
+      color:  context.theme.backgroundColor,
+      child: Column(
         children: [
           SizedBox(
             height: 10,

@@ -26,10 +26,10 @@ class CardItems extends StatelessWidget {
                     ? controller.prodects.length
                     : controller.searchList.length,
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  childAspectRatio: 0.8,
-                  mainAxisSpacing: 13,
+                  childAspectRatio: 1,
+                  mainAxisSpacing: 2,
                   crossAxisSpacing: 2,
-                  maxCrossAxisExtent: 300,
+                  maxCrossAxisExtent: 220,
                 ),
                 itemBuilder: (context, index) {
                   if (controller.searchList.isEmpty) {
@@ -83,7 +83,7 @@ class CardItems extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: mainColor,
+            color: Get.isDarkMode? mainColor:Colors.grey,
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.2),
@@ -95,46 +95,50 @@ class CardItems extends StatelessWidget {
           child: Column(
             children: [
               Obx(
-                () => Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        controller.addProdectToFirstore(productModels);
-                      },
-                      icon: controller.isFave(productId)
-                          ? const Icon(
-                              Icons.favorite,
-                              color: Colors.red,
-                            )
-                          : const Icon(
-                              Icons.favorite_outline,
-                              color: Colors.white,
-                            ),
+                    () =>   Stack(
+                  children: [Container(
+                    width: double.infinity,
+                    height: 130,
+                    decoration: BoxDecoration(
+                      color: mainColor,
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    IconButton(
-                      onPressed: () {
-                        cartController.addCartToFirstore(productModels);
-                      },
-                      icon: const Icon(
-                        Icons.shopping_cart,
-                        color: Colors.white,
-                      ),
+                    child: Image.network(
+                      image,
+                      fit: BoxFit.fill,
                     ),
-                  ],
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                height: 140,
-                decoration: BoxDecoration(
-                  color: mainColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Image.network(
-                  image,
-                  fit: BoxFit.cover,
-                ),
+                  ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            controller.addProdectToFirstore(productModels);
+                          },
+                          icon: controller.isFavorite.value
+                              ? const Icon(
+                            Icons.favorite,
+                            color: Colors.red,
+                          )
+                              : const Icon(
+                            Icons.favorite_outline,
+                            color: Colors.white,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            cartController.addCartToFirstore(productModels);
+                          },
+                          icon: const Icon(
+                            Icons.shopping_cart,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ]),
+
               ),
               TextUtils(text: " $productName", color: Colors.white, fontWeight: FontWeight.bold, fontsize: 13)
              , Padding(

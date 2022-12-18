@@ -21,8 +21,16 @@ class FavoriteWidget extends StatelessWidget {
               height: 178,
               width: 393,
               decoration: BoxDecoration(
-                  color: Color.fromRGBO(255, 255, 255, 1),
-                  borderRadius: BorderRadius.circular(20)),
+                borderRadius: BorderRadius.circular(15),
+                color: Get.isDarkMode? mainColor:Colors.grey,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 3.0,
+                    blurRadius: 5.0,
+                  ),
+                ],
+              ),
               child: Row(
                 children: [
                   Container(
@@ -30,47 +38,42 @@ class FavoriteWidget extends StatelessWidget {
                     width: 99,
                     margin: EdgeInsets.only(left: 15),
                     decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.3),
+                        color: Get.isDarkMode? Colors.white:Colors.grey,
                         borderRadius: BorderRadius.circular(4),
                         image: DecorationImage(
                             image: NetworkImage('${prodectModels[index]['imageUrl']}'),
                             fit: BoxFit.cover)),
                   ),
                   SizedBox(
-                    width: 50,
+                    width: 10,
                   ),
                   Expanded(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: 5,),
+                        SizedBox(
+                          height: 20,
+                        ),
                         Text(
                           "${prodectModels[index]['productName']}",
                           style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w300,
-                              color: Color.fromRGBO(0, 0, 0, 1)),
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: googleColor),
                         ),
                         Text(
-                          "${prodectModels[index]['category']}",
+                          "Category : ${prodectModels[index]['category']}",
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
-                              color: Color.fromRGBO(0, 0, 0, 1)),
+                              color:  Colors.white),
                         ),
-                        Text(
-                          "${prodectModels[index]['quantity']}",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: Color.fromRGBO(0, 0, 0, 1)),
-                        ),
-                          Text("\$${prodectModels[index]['price']}",
+                          Text(" \$${prodectModels[index]['price']}",
                               style: TextStyle(
                                   fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: Color.fromRGBO(0, 0, 0, 1))
+                                  fontWeight: FontWeight.normal,
+                                  color: googleColor)
                           ),
                           SizedBox(height: 5,),
                         ]),

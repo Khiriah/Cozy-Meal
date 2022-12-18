@@ -21,9 +21,9 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     print("image path ${controller.imagePath1}");
     print("username ${authController.displayUserName.value}");
-    return SafeArea(
-      child: Scaffold(
-          body: GetBuilder<AuthController>(builder: (_) {
+    return Container(
+      color:  context.theme.backgroundColor,
+          child: GetBuilder<AuthController>(builder: (_) {
             return Obx(() => Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
@@ -111,7 +111,7 @@ class ProfileScreen extends StatelessWidget {
                     ],
                   ),
                 ));
-          })),
+          })
     );
   }
 }

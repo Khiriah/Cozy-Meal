@@ -5,8 +5,6 @@ import 'package:cozy_meal/views/widgets/product/prouctsIn_stock.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'product_ui_widget.dart';
-
 class ProductListWidjet extends StatelessWidget {
   ProductListWidjet({Key? key}) : super(key: key);
   final productController = Get.put(ProductController());

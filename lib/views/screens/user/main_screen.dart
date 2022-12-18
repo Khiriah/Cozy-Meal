@@ -27,7 +27,8 @@ class MainScreen extends StatelessWidget {
                   () => Badge(
                     position: BadgePosition.topEnd(top: 0, end: 3),
                     animationDuration: const Duration(milliseconds: 300),
-                    animationType: BadgeAnimationType.slide,
+                    badgeColor: mainColor,
+                    animationType: BadgeAnimationType.scale,
                     badgeContent: Text(
                       cartController.quantity().toString(),
                       style: const TextStyle(color: googleColor),
@@ -41,12 +42,12 @@ class MainScreen extends StatelessWidget {
                   ),
                 ),
               ],
-              backgroundColor:mainColor ,
+              backgroundColor:Get.isDarkMode? mainColor:Colors.grey ,
               title: Text(controller.title[controller.currentIndex.value],style: TextStyle(color: googleColor),),
               centerTitle: true,
             ),
             bottomNavigationBar: BottomNavigationBar(
-              backgroundColor: mainColor,
+              backgroundColor: Get.isDarkMode? mainColor:Colors.grey ,
               currentIndex: controller.currentIndex.value,
               type: BottomNavigationBarType.fixed,
               items: [
@@ -57,7 +58,7 @@ class MainScreen extends StatelessWidget {
                   ),
                   icon: Icon(
                     Icons.home,
-                    color: Colors.grey,
+                    color: Get.isDarkMode? Colors.grey:Colors.white,
                   ),
                   label: '',
                 ),
@@ -73,13 +74,14 @@ class MainScreen extends StatelessWidget {
                 //   label: '',
                 // ),
                 BottomNavigationBarItem(
+
                   activeIcon: Icon(
                     Icons.favorite,
                     color: googleColor,
                   ),
                   icon: Icon(
                     Icons.favorite,
-                    color: Colors.grey,
+                    color: Get.isDarkMode? Colors.grey:Colors.white,
                   ),
                   label: '',
                 ),
@@ -91,7 +93,7 @@ class MainScreen extends StatelessWidget {
                   ),
                   icon: Icon(
                     Icons.person_pin,
-                    color:  Colors.grey ,
+                    color: Get.isDarkMode? Colors.grey:Colors.white,
                   ),
                   label: '',
                 ),

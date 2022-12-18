@@ -89,7 +89,7 @@ class ProductController extends GetxController {
     final data = prodect.toJson(); // insert to fiserbase
     prodectRef.set(data).whenComplete(() {
       clearController();
-      Get.snackbar("", "Added successfully..");
+      Get.snackbar("Added", " successfully..");
       Get.offNamed(Routes.stockScreen);
       update();
     }).catchError((error) {
@@ -183,10 +183,11 @@ class ProductController extends GetxController {
     pickedFile = null;
   }
 
-  var favouritesList =<Prodect> [].obs;
+
   var cartsList =<Prodect> [].obs;
 
 
+  RxBool isFavorite = false.obs;
 
   Future<void> addProdectToFirstore(Prodect prodect) async {
     final prodectRef = fireRef
@@ -196,9 +197,10 @@ class ProductController extends GetxController {
     final data=prodect.toJson();
 prodectRef.set(data).whenComplete(() {
       if(prodect.productNumber==prodectRef.id){
-        Get.snackbar("Added", " successfully..");
-
+        isFavorite=true as RxBool;
+        Get.snackbar("Added", " successfully to Favourite list..");
       }else{
+        isFavorite=false as RxBool;
         Get.snackbar("Error", "Somthing went wrong ");
       }
     }
@@ -207,23 +209,18 @@ prodectRef.set(data).whenComplete(() {
   }
 
 
+
   Future<void> deletefavoret(String id) async {
 await fireRef
     .doc(controller.displayUserEmail.value)
     .collection("favourite")
     .doc(id)
     .delete();
-Get.snackbar( "On Favourite", " was removed from your cart" );
+Get.snackbar( "On Favourite", " was removed from your Favourite list" );
   }
 
 
 
-  bool isFave(String productId) {
-    return favouritesList
-        .any((element) {
-      return element.productNumber== productId;
-    });
-  }
 
 
   void addSearchToList(String searchName) {
@@ -236,6 +233,15 @@ Get.snackbar( "On Favourite", " was removed from your cart" );
     }).toList();
     update();
   }
+
+
+  List <String> imageListSlider = [
+    "https://images.unsplash.com/photo-1592663527359-cf6642f54cff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGNvb2ZmZWV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
+    "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGNvb2ZmZWV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
+    "https://images.unsplash.com/photo-1572286258217-40142c1c6a70?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fGNvb2ZmZWV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
+    "https://images.unsplash.com/photo-1520903304654-28bd223f96d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8Mnw3NDk0MzIwN3x8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
+  ];
+
 
 
 

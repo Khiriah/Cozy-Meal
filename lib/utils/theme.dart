@@ -10,7 +10,7 @@ const Color googleColor = Color(0xffFFC520);
 class ThemesApp {
   static final light = ThemeData(
     primaryColor: googleColor,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.grey.shade200,
     brightness: Brightness.light,
   );
 
