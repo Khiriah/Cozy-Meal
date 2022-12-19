@@ -15,5 +15,4 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-
-![alt text]([https://github.com/Khiriah/Cozy-Meal/issues/1#issue-1502733925])
+![phonto](https://github.com/Khiriah/Cozy-Meal/issues/1#issue-1502733925)
