@@ -16,4 +16,4 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 
-<a href="https://mrkzgulfup.com/" target="_blank" title="https://mrkzgulfup.com/"><img src="https://mrkzgulfup.com/uploads/167144596427651.png" border="0" alt="https://mrkzgulfup.com/uploads/167144596427651.png" /></a>
+![alt text]([http://url/to/img.png](https://mrkzgulfup.com/uploads/167144596427651.png))
