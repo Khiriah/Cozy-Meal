@@ -1,19 +1,18 @@
-import 'package:cozy_meal/logic/bindings/main_binding.dart';
-import 'package:cozy_meal/views/screens/admin/add_product_screen.dart';
-import 'package:cozy_meal/views/screens/admin/stock_screen.dart';
-import 'package:cozy_meal/views/screens/datiles/details_screen.dart';
-import 'package:cozy_meal/views/screens/first_screen.dart';
-import 'package:cozy_meal/views/screens/forgot_password_screen.dart';
-import 'package:cozy_meal/views/screens/login_screen.dart';
-import 'package:cozy_meal/views/screens/setting/edit_profile_screen.dart';
-import 'package:cozy_meal/views/screens/setting/profile.dart';
-import 'package:cozy_meal/views/screens/setting/settings_screen.dart';
-import 'package:cozy_meal/views/screens/signup_screen.dart';
-import 'package:cozy_meal/views/screens/cart/cart_screen.dart';
-import 'package:cozy_meal/views/screens/user/main_screen.dart';
-import 'package:cozy_meal/views/widgets/product/catagory/stores_screen.dart';
+import 'package:cozy_meal/auth/bindings/auth_binding.dart';
+import 'package:cozy_meal/auth/bindings/main_binding.dart';
+import 'package:cozy_meal/auth/view/screens/first_screen.dart';
+import 'package:cozy_meal/auth/view/screens/forget_password_screen.dart';
+import 'package:cozy_meal/auth/view/screens/login_screen.dart';
+import 'package:cozy_meal/auth/view/screens/setting/edit_profile_screen.dart';
+import 'package:cozy_meal/auth/view/screens/setting/profile.dart';
+import 'package:cozy_meal/auth/view/screens/setting/settings_screen.dart';
+import 'package:cozy_meal/auth/view/screens/signup_screen.dart';
+import 'package:cozy_meal/product/view/screens/admin/add_product_screen.dart';
+import 'package:cozy_meal/product/view/screens/admin/stock_screen.dart';
+import 'package:cozy_meal/product/view/screens/cart/cart_screen.dart';
+import 'package:cozy_meal/product/view/widgets/category/stores_screen.dart';
 import 'package:get/route_manager.dart';
-import 'logic/bindings/auth_binding.dart';
+import 'product/view/screens/user/main_screen.dart';
 
 class AppRoutes {
   static const login = Routes.loginScreen;
@@ -21,14 +20,14 @@ class AppRoutes {
   static final routes = [
     GetPage(
         name: Routes.loginScreen,
-        page: () => Login_Screen(),
+        page: () => LoginScreen(),
         binding: AuthBinding()),
     GetPage(
         name: Routes.signScreen,
         page: () => SignUpScreen(),
         binding: AuthBinding()),
     GetPage(
-        name: Routes.forgotpasswordScreen,
+        name: Routes.forgetPasswordScreen,
         page: () => ForgotPasswordScreen(),
         binding: AuthBinding()),
     GetPage(
@@ -68,7 +67,7 @@ class AppRoutes {
       ],
     ), GetPage(
       name:Routes.firstScreen,
-      page: () => FirstScreen(),
+      page: () => const FirstScreen(),
       bindings: [
         AuthBinding(),
         MainBinding()
@@ -100,7 +99,7 @@ class AppRoutes {
 class Routes {
   static const loginScreen = '/loginScreen';
   static const signScreen = '/signScreen';
-  static const forgotpasswordScreen = '/forgotpasswordScreen';
+  static const forgetPasswordScreen = '/forget_password_screen';
   static const profileScreen = '/profileScreen';
   static const editProfileScreen = '/editProfileScreen';
   static const settingsScreen = '/settingsScreen';
